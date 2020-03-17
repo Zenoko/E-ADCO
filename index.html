@@ -11,11 +11,117 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+    // CANVAS HANDLING
+
+    let draw =  {
+        init:function(){
+            self=this;
+            this.clickX = new Array();
+            this.clickY = new Array();
+            this.clickDrag = new Array();
+            this.paint;
+            this.canvasDiv = document.getElementById('canvasDiv');
+            this.canvas = document.createElement('canvas');
+            this.canvas.setAttribute('width', "400");
+            this.canvas.setAttribute('height', "300");
+            this.canvas.setAttribute('id', 'canvas');
+            this.canvasDiv.appendChild(this.canvas);
+            if(typeof G_vmlCanvasManager !== 'undefined') {
+                this.canvas = G_vmlCanvasManager.initElement(this.canvas);
+            }
+            this.context = canvas.getContext("2d");
+ 
+            $('#canvas').mousedown(function(e){
+                var mouseX = e.pageX - this.offsetLeft;
+                var mouseY = e.pageY - this.offsetTop;
+                  
+                this.paint = true;
+                draw.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+                draw.redraw();
+            });
+          
+            $('#canvas').mousemove(function(e){
+                if(this.paint){
+                draw.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+                draw.redraw();
+                }
+            });     
+          
+            $('#canvas').mouseup(function(e){
+                this.paint = false;
+            });
+          
+            $('#canvas').mouseleave(function(e){
+                this.paint = false;
+            });
+        },
+        addClick:function(x, y, dragging){
+            this.clickX.push(x);
+            this.clickY.push(y);
+            this.clickDrag.push(dragging);
+        },
+        redraw:function(){
+                this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height); // Clears the canvas
+          
+                this.context.strokeStyle = "#333";
+                this.context.lineJoin = "round";
+                this.context.lineWidth = 5;
+          
+                for(var i=0; i < this.clickX.length; i++) {      
+                    this.context.beginPath();
+                    if(this.clickDrag[i] && i){
+                            this.context.moveTo(this.clickX[i-1], this.clickY[i-1]);
+                    }else{
+                            this.context.moveTo(this.clickX[i]-1, this.clickY[i]);
+                    }
+                    this.context.lineTo(this.clickX[i], this.clickY[i]);
+                    this.context.closePath();
+                    this.context.stroke();
+                }
+        },
+                clear:function(){
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.clickX = new Array();
+            this.clickY = new Array();
+            this.clickDrag = new Array();
+        }
+        }
+ 
+        document.addEventListener("DOMContentLoaded", () => {
+        draw.init();
+    });
+	
+	function render() {
+        canvas.removeEventListener('mousedown', ev_mousedown);
+        canvas.style.cssText = "border: none;";
+
+        $("clear_btn").remove();
+        $("render_btn").remove();
+
+        to_render = ['name', 'born', 'address', 'place', 'date'];
+        to_render.forEach(function(el) {
+            $(el).insertAdjacentHTML('afterend', $(el).value);
+            $(el).remove();
+        });
+
+        to_disable = ['choix_A', 'choix_B', 'choix_C', 'choix_D', 'choix_E'];
+        to_disable.forEach(function(el) {
+            if (!$(el).checked) {
+                $(el).remove();
+                $('label_' + el).remove();
+            }
+        });
+
+        window.print();
+
+    }
+
+	</script>
 </head>
 <body>
-
     <div class="main">
-
         <!-- Sign up form -->
         <section class="signup">
             <div class="container">
@@ -58,11 +164,12 @@
                                 <input type="checkbox" name="choix_E" id="choix_E" class="agree-term" />
                                 <label for="choix_E" class="label-agree-term"><span><span></span></span>  déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle des personnes, à l’exclusion de toute pratique sportive collective, et aux besoins des animaux de compagnie.</a></label>
                             </div>
+
 							<div class="form-group float-right text-right">
                                 Fait à <input class="classic" />, le <input type="date" class="classic" />
 								<div class="sign">(signature)</div>
-								<canvas style="border: 1px solid black" id="signature" width="400" height="300"></canvas><br/>
-								<a href="#" onclick="can_clear();" id="clear_btn">Effacer</a>
+								<div class="cadre" id="canvasDiv" style="border: 1px solid black"></div>
+								 <a href="#" onclick="draw.clear();" id="clear_btn">Effacer</a>
                             </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
@@ -117,108 +224,8 @@
     </div>
 
     <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-	<script type="text/javascript">
-
-    function $(id) { return document.getElementById(id); }
-    var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    if (is_safari) {
-        $('date').value = new Date().toLocaleDateString();
-    } else {
-        $('date').valueAsDate = new Date();
-    }
-
-    // CANVAS HANDLING
-
-    var canvas = $('signature');
-    canvas.addEventListener('mousedown', ev_mousedown, false);
-    canvas.addEventListener('mousemove', ev_mousemove, false);
-    window.addEventListener('mouseup', ev_mouseup, false);
-
-    canvas.addEventListener('touchstart', ev_touchstart, false);
-    canvas.addEventListener('touchmove', ev_touchmove, false);
-    window.addEventListener('touchend', ev_mouseup, false);
-
-    ctx = canvas.getContext('2d');
-
-    var started = false;
-
-    function ev_mouseup(ev) {
-        started = false;
-    }
-
-    function ev_touchstart(ev) {
-        ev.preventDefault();
-        started = true;
-        var x = ev.touches[0].clientX;
-        var y = ev.touches[0].clientY;
-        x = x - canvas.offsetLeft;
-        y = y - canvas.offsetTop;
-
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-    }
-
-    function ev_touchmove(ev) {
-        ev.preventDefault();
-
-        var x = ev.touches[0].clientX;
-        var y = ev.touches[0].clientY;
-        x = x - canvas.offsetLeft;
-        y = y - canvas.offsetTop;
-
-        if (started) {
-            ctx.lineTo(x, y);
-            ctx.stroke();
-        }
-    }
-
-    function ev_mousedown(ev) {
-        started = true;
-        ctx.beginPath();
-        ctx.moveTo(ev.offsetX, ev.offsetY);
-    }
-
-    function ev_mousemove(ev) {
-        if (started) {
-            ctx.lineTo(ev.offsetX, ev.offsetY);
-            ctx.stroke();
-        }
-    }
-
-    function can_clear() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    // RENDERING
-
-    function render() {
-        canvas.removeEventListener('mousedown', ev_mousedown);
-        canvas.style.cssText = "border: none;";
-
-        $("clear_btn").remove();
-        $("render_btn").remove();
-
-        to_render = ['name', 'born', 'address', 'place', 'date'];
-        to_render.forEach(function(el) {
-            $(el).insertAdjacentHTML('afterend', $(el).value);
-            $(el).remove();
-        });
-
-        to_disable = ['choix_a', 'choix_b', 'choix_c', 'choix_d', 'choix_e'];
-        to_disable.forEach(function(el) {
-            if (!$(el).checked) {
-                $(el).remove();
-                $('label_' + el).remove();
-            }
-        });
-
-        window.print();
-
-    }
-
-	</script>
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+    <!-- <script src="js/main.js"></script> -->
+	
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
