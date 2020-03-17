@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Générateur d'Attestation de déplacement</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title" style="text-align:center">ATTESTATION DE DÉPLACEMENT DÉROGATOIRE</h2>
+						<p class="form-descript" style="text-align:center;">En application de l'article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :</p>
+                        <form method="POST" class="register-form" id="register-form">
+						<br/><h4>Je soussigné(e)</h4>
+                            <div class="form-group">
+                                <label for="name">Mme / M.</label>
+                                <input type="text" name="name" id="name" placeholder="NOM PRENOM"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Né(e) le  :</label>
+                                <input type="email" name="email" id="email" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="adress">Demeurant  :</label>
+                                <input type="text" name="adress" id="adress" placeholder="Adresse complète"/>
+                            </div>
+							<h4>certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans le cadre de la lutte contre la propagation du virus Covid-19  :</h4>
+                            <div class="form-group">
+                                <input type="checkbox" name="choix_A" id="choix_A" class="agree-term" />
+                                <label for="choix_A" class="label-agree-term"><span><span></span></span> déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées sous forme de télétravail (sur justificatif permanent) ou déplacements professionnels ne pouvant être différés ;</a></label>
+                            </div>
+							<div class="form-group">
+                                <input type="checkbox" name="choix_B" id="choix_B" class="agree-term" />
+                                <label for="choix_B" class="label-agree-term"><span><span></span></span>  déplacements pour effectuer des achats de première nécessité dans des établissements autorisés (liste sur gouvernement.fr) ; </a></label>
+                            </div>
+							<div class="form-group">
+                                <input type="checkbox" name="choix_C" id="choix_C" class="agree-term" />
+                                <label for="choix_C" class="label-agree-term"><span><span></span></span> déplacements pour motif de santé ;</a></label>
+                            </div>
+							<div class="form-group">
+                                <input type="checkbox" name="choix_D" id="choix_D" class="agree-term" />
+                                <label for="choix_D" class="label-agree-term"><span><span></span></span>  déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants ;</a></label>
+                            </div>
+							<div class="form-group">
+                                <input type="checkbox" name="choix_E" id="choix_E" class="agree-term" />
+                                <label for="choix_E" class="label-agree-term"><span><span></span></span>  déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle des personnes, à l’exclusion de toute pratique sportive collective, et aux besoins des animaux de compagnie.</a></label>
+                            </div>
+							<div class="form-group float-right">
+                                <label for="lieu" class="label-date label-agree-term">Fait à </label><input type="text" id="lieu"/>
+								<label for="date" class="label-date label-agree-term">le </label><input type="date" id="date"><br>
+								(signature)<br/>
+								<canvas style="border: 1px solid black" id="signature" width="400" height="300"></canvas><br/>
+								<a href="#" onclick="can_clear();" id="clear_btn">Effacer</a>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sing in  Form -->
+        <!--<section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
+                        <a href="#" class="signup-image-link">Create an account</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                        <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+	<script type="text/javascript">
+
+    function $(id) { return document.getElementById(id); }
+    var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (is_safari) {
+        $('date').value = new Date().toLocaleDateString();
+    } else {
+        $('date').valueAsDate = new Date();
+    }
+
+    // CANVAS HANDLING
+
+    var canvas = $('signature');
+    canvas.addEventListener('mousedown', ev_mousedown, false);
+    canvas.addEventListener('mousemove', ev_mousemove, false);
+    window.addEventListener('mouseup', ev_mouseup, false);
+
+    canvas.addEventListener('touchstart', ev_touchstart, false);
+    canvas.addEventListener('touchmove', ev_touchmove, false);
+    window.addEventListener('touchend', ev_mouseup, false);
+
+    ctx = canvas.getContext('2d');
+
+    var started = false;
+
+    function ev_mouseup(ev) {
+        started = false;
+    }
+
+    function ev_touchstart(ev) {
+        ev.preventDefault();
+        started = true;
+        var x = ev.touches[0].clientX;
+        var y = ev.touches[0].clientY;
+        x = x - canvas.offsetLeft;
+        y = y - canvas.offsetTop;
+
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    }
+
+    function ev_touchmove(ev) {
+        ev.preventDefault();
+
+        var x = ev.touches[0].clientX;
+        var y = ev.touches[0].clientY;
+        x = x - canvas.offsetLeft;
+        y = y - canvas.offsetTop;
+
+        if (started) {
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        }
+    }
+
+    function ev_mousedown(ev) {
+        started = true;
+        ctx.beginPath();
+        ctx.moveTo(ev.offsetX, ev.offsetY);
+    }
+
+    function ev_mousemove(ev) {
+        if (started) {
+            ctx.lineTo(ev.offsetX, ev.offsetY);
+            ctx.stroke();
+        }
+    }
+
+    function can_clear() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // RENDERING
+
+    function render() {
+        canvas.removeEventListener('mousedown', ev_mousedown);
+        canvas.style.cssText = "border: none;";
+
+        $("clear_btn").remove();
+        $("render_btn").remove();
+
+        to_render = ['name', 'born', 'address', 'place', 'date'];
+        to_render.forEach(function(el) {
+            $(el).insertAdjacentHTML('afterend', $(el).value);
+            $(el).remove();
+        });
+
+        to_disable = ['choix_a', 'choix_b', 'choix_c', 'choix_d', 'choix_e'];
+        to_disable.forEach(function(el) {
+            if (!$(el).checked) {
+                $(el).remove();
+                $('label_' + el).remove();
+            }
+        });
+
+        window.print();
+
+    }
+
+	</script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
