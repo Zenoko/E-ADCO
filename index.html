@@ -171,10 +171,13 @@
 								<div class="cadre" id="canvasDiv" style="border: 1px solid black"></div>
 								 <a href="#" onclick="draw.clear();" id="clear_btn">Effacer</a>
                             </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
-                            </div>
+                            
                         </form>
+						<div class="form-group form-button">
+							<center><input type="button" onclick="render();" id="render_btn" class="form-submit" value="Générer"/>
+							<input type="button" onclick="window.location.reload();" id="reset_btn" class="form-submit" value="Remise à zéro"/></center>
+						</div>
+					
                     </div>
                 </div>
             </div>
@@ -224,8 +227,8 @@
     </div>
 
     <!-- JS -->
-    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
-    <!-- <script src="js/main.js"></script> -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
 	
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
