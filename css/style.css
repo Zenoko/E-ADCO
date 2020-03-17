@@ -610,3 +610,17 @@ label.valid {
     margin-bottom: 10px; } }
 
 /*# sourceMappingURL=style.css.map */
+
+input.classic {
+  width: auto;
+  padding: 0;
+  display: initial;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.sign {
+  margin-top: 30px;
+}
