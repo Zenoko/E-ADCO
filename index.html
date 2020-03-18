@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <div class="main">
+	<button onclick="generatePDF()">Download as PDF</button>
+    <div class="main" id="main">
 
         <!-- Sign up form -->
         <section class="signup">
@@ -62,7 +62,7 @@
                                 Fait à <input type="text" class="classic" name="place" />, le <input type="date" class="classic"  name="date"  />
 								<div class="sign">(signature)</div>
 								<div id="canvas">
-							      <canvas class="roundCorners" id="newSignature" style="position: relative; margin: 0; padding: 0; border: 1px solid #c4caac;"></canvas>
+							      <canvas class="roundCorners canvas" id="newSignature" style=""></canvas>
 							    </div>
 							    <button type="button" id="sauvegarder_btn" onclick="signatureSave()">Sauvegarder</button>
 							    <button type="button" id="nettoyer_btn" onclick="signatureClear()">Nettoyer</button>
@@ -129,13 +129,14 @@
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
+	<script src="html2pdf.bundle.min.js"></script>
     <script>
     	signatureCapture();
 		document.getElementById("saveSignature").style.display = 'none';
 		document.getElementById("used-sign").style.display = 'none';
 		
 		// RENDERING
-		var canvas = $('newSignature');
+		var canvas = document.getElementById("newSignature");
 		
     function render() {
         canvas.removeEventListener('mousedown', ev_mousedown);
@@ -151,17 +152,20 @@
             $(el).remove();
         });
 
-        to_disable = ['choix_A', 'choix_B', 'choix_C', 'choix_D', 'choix_E'];
-        to_disable.forEach(function(el) {
-            if (!$(el).checked) {
-                $(el).remove();
-                $('label_' + el).remove();
-            }
-        });
 
         //window.print();
 
     }
+	
+	function generatePDF() {
+	  // Choose the element that our invoice is rendered in.
+	  const element = document.getElementById("main");
+	  // Choose the element and save the PDF for our user.
+	  html2pdf()
+		.set({ html2canvas: { scale: 4 } })
+		.from(element)
+		.save();
+	}
 	</script>
 
 	<!--<script type="text/javascript">

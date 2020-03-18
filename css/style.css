@@ -214,6 +214,13 @@ body {
   -webkit-border-radius: 20px;
   -o-border-radius: 20px;
   -ms-border-radius: 20px; }
+  
+.canvas{
+	position: relative; 
+	margin: 0; 
+	padding: 0; 
+	border: 1px solid #c4caac;
+}
 
 .display-flex {
   justify-content: space-between;
