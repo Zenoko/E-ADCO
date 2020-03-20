@@ -76,7 +76,6 @@
 			<div class="fixedbutton">
 				<div class="form-group form-button">
 					<button onclick="generatePDF()" class="btn btn-primary">Télécharger PDF</button><br/>
-					<button id="generateCanvas" class="btn btn-primary">Create Canvas</button><br/>
 					<button onclick="window.location.reload();" id="reset_btn" class="btn btn-primary" >Remise à zéro</button>
 				</div>
 			</div>
@@ -123,12 +122,6 @@
 			.save();
 		}
 		
-		document.getElementById('generateCanvas').onclick = function () {
-			var element = document.getElementById('signup-content');
-			html2canvas(element).then(function (canvas) {
-			document.body.appendChild(canvas);
-		  });
-		};
 		</script>
 	</body>
 </html>
