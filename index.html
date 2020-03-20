@@ -143,26 +143,6 @@
 		document.getElementById("used-sign").style.display = 'none';
 		
 		// RENDERING
-		
-		
-    function render() {
-        canvas.removeEventListener('mousedown', ev_mousedown);
-        canvas.style.cssText = "border: none;";
-
-        $("sauvegarder_btn").remove();
-        $("nettoyer_btn").remove();
-        $("render_btn").remove();
-
-        to_render = ['name', 'email', 'address', 'place', 'date'];
-        to_render.forEach(function(el) {
-            $(el).insertAdjacentHTML('afterend', $(el).value);
-            $(el).remove();
-        });
-
-
-        //window.print();
-
-    }
 	
 	function generatePDF() {
 	  // Choose the element that our invoice is rendered in.
@@ -178,9 +158,9 @@
 
 	  const element = document.getElementById("signup-content");
 	  var opt = {
-		  filename:     'attestation_deplacement_'+checkedValue+'_'+name+"_"+ladate.getFullYear()+"_"+(ladate.getMonth()+1)+"_"+ladate.getDate()+'.pdf',
-		  image:        { type: 'jpeg', quality: 0.98 },
-		  html2canvas:  { scale: 4 }
+		  filename:     'attestation_deplacement_'+checkedValue+'_'+name+"_"+ladate.getFullYear()+"_"+(ladate.getMonth()+1)+"_"+ladate.getDate()+'.pdf'
+		  //image:        { type: 'jpeg', quality: 0.98 },
+		  //html2canvas:  { scale: 4 }
 		};
 	  // Choose the element and save the PDF for our user.
 	  html2pdf()
