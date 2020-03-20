@@ -2,7 +2,7 @@
 
 Ce petit service permet de générer un PDF afin de faciliter la création d'une attestation de déplacement Covid-19
 
-## Pour l'utiliser :
+## Utilisation :
 
 https://zenoko.github.io/
 
