@@ -362,7 +362,9 @@ body {
   margin: 0 55px; }
 
 .form-title {
-  margin-bottom: 10px; }
+  margin-bottom: 10px; 
+  margin-top: 30px;
+}
 
 .signup-image {
   margin-top: 45px; }
@@ -411,7 +413,7 @@ figure {
 
 .form-group {
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   overflow: hidden; }
   .form-group:last-child {
 	margin-top: 50px;
@@ -421,7 +423,7 @@ input {
   width: 100%;
   display: block;
   border: none;
-  border-bottom: 1px solid #999;
+  border-bottom: 2px dotted #999;
   padding: 6px 6px 6px 90px;
   font-family: Poppins;
   box-sizing: border-box; }
@@ -434,7 +436,7 @@ input {
   input:-moz-placeholder {
     color: #999; }
   input:focus {
-    border-bottom: 1px solid #222; }
+    border-bottom: 2px dotted #222; }
     input:focus::-webkit-input-placeholder {
       color: #222; }
     input:focus::-moz-placeholder {
