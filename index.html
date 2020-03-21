@@ -75,7 +75,6 @@
 			
 			<div class="fixedbutton">
 				<div class="form-group form-button">
-					<button onclick="generatePDF()" class="btn btn-primary">Télécharger PDF</button><br/>
 					<button class="btn btn-primary" id="generate">Générer PDF</button><br/>
 					<button onclick="window.location.reload();" id="reset_btn" class="btn btn-primary" >Remise à zéro</button>
 				</div>
@@ -98,7 +97,7 @@
 			
 			// RENDERING
 		
-		function generatePDF() {
+		/*function generatePDF() {
 		  // Choose the element that our invoice is rendered in.
 		  var name = document.getElementById("name").value;
 		  var checkedValue = document.querySelector('.agree-term:checked').value;
@@ -120,7 +119,7 @@
 			.set(opt)
 			.from(element)
 			.save();
-		}
+		}*/
 		
 		document.getElementById('generate').onclick = function () {
 			// Your html2pdf code here.
@@ -132,7 +131,9 @@
 			//canvas.removeEventListener('mousedown', ev_mousedown);
 			canvas.style.cssText = "border: none;";
 			//document.getElementById("sauvegarder_btn").remove();
-			document.getElementById("nettoyer_btn").remove();
+			if(document.getElementById("nettoyer_btn")){
+				document.getElementById("nettoyer_btn").remove();
+			}
 			
 			var element = document.getElementById('signup-content');
 			var opt = {
@@ -145,6 +146,8 @@
 				.set(opt)
 				.from(element)
 				.save();
+				
+			window.location.reload();
 		};
 		
 		</script>
