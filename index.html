@@ -147,7 +147,9 @@
 				.from(element)
 				.save();
 				
-			window.location.reload();
+			if(html2pdf.set(opt).from(element).save()){
+				window.location.reload();
+			}
 		};
 		
 		</script>
