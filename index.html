@@ -50,13 +50,9 @@
 									<input type="checkbox" name="assistance" id="assistance" class="agree-term" value="assistance" />
 									<label for="assistance" class="label-agree-term"><span><span></span></span>déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants ;</label>
 								</div>
-								<!--<div class="form-group">
+								<div class="form-group">
 									<input type="checkbox" name="proximite" id="proximite" class="agree-term" value="proximite"/>
 									<label for="proximite" class="label-agree-term"><span><span></span></span>déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle des personnes, à l’exclusion de toute pratique sportive collective, et aux besoins des animaux de compagnie.</label>
-								</div>-->
-								<div class="form-group">
-									<input type="checkbox" name="proximite2" id="proximite2" class="agree-term" value="assistance2" />
-									<label for="proximite2" class="label-agree-term"><span><span></span></span>déplacements brefs,</label>
 								</div>
 								<div class="form-group float-right text-right">
 									Fait à <input type="text" class="classic" name="place" />, le <input type="date" class="classic"  name="date"  />
@@ -127,10 +123,29 @@
 		}
 		
 		document.getElementById('generate').onclick = function () {
-		// Your html2pdf code here.
-		var element = document.getElementById('signup-content');
-		html2pdf(element);
-};
+			// Your html2pdf code here.
+			// Choose the element that our invoice is rendered in.
+			var name = document.getElementById("name").value;
+			var checkedValue = document.querySelector('.agree-term:checked').value;
+			var ladate=new Date()
+			var canvas = document.getElementById("newSignature");
+			//canvas.removeEventListener('mousedown', ev_mousedown);
+			canvas.style.cssText = "border: none;";
+			//document.getElementById("sauvegarder_btn").remove();
+			document.getElementById("nettoyer_btn").remove();
+			
+			var element = document.getElementById('signup-content');
+			var opt = {
+			  filename:     'attestation_deplacement_'+checkedValue+'_'+name+"_"+ladate.getFullYear()+"_"+(ladate.getMonth()+1)+"_"+ladate.getDate()+'.pdf',
+			  image:        { type: 'jpeg', quality: 0.98 },
+			  html2canvas:  { scale: 4 }
+			};
+			// Choose the element and save the PDF for our user.
+			html2pdf()
+				.set(opt)
+				.from(element)
+				.save();
+		};
 		
 		</script>
 	</body>
