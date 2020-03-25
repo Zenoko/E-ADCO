@@ -1,172 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Générateur d'Attestation de déplacement</title>
-		<!-- Font Icon -->
-		<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-		<!-- Main css -->
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
-		<div class="main" id="main">
-			<!-- Sign up form -->
-			<section class="signup">
-				<div class="container">
-					<div class="signup-content" id="signup-content">
-						<div class="signup-form">
-							<h2 class="form-title" style="text-align:center">ATTESTATION DE DÉPLACEMENT DÉROGATOIRE</h2>
-							<p class="form-descript" style="text-align:center;">En application de l'article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :</p>
-							<form method="POST" class="register-form" id="register-form">
-							<br/><h4>Je soussigné(e)</h4>
-								<div class="form-group">
-									<label for="name">Mme / M.</label>
-									<input type="text" name="name" id="name" placeholder="NOM PRENOM" class="info"/>
-								</div>
-								<div class="form-group">
-									<label for="birthday">Né(e) le  :</label>
-									<input type="text" name="birthday" id="birthday" class="info" placeholder="jj/mm/aaaa" onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"/>
-								</div>
-								<div class="form-group">
-									<label for="address">Demeurant  :</label>
-									<input type="text" name="address" id="address" placeholder="Adresse complète"  class="info"/>
-								</div>
-								<h4>certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans le cadre de la lutte contre la propagation du virus Covid-19  :</h4>
-								<div class="form-group">
-									<input type="checkbox" name="travail" id="travail" class="agree-term" value="travail" />
-									<label for="travail" class="label-agree-term"><span><span></span></span>déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées sous forme de télétravail (sur justificatif permanent) ou déplacements professionnels ne pouvant être différés ;</label>
-								</div>
-								<div class="form-group">
-									<input type="checkbox" name="achats" id="achats" class="agree-term" value="achats"/>
-									<label for="achats" class="label-agree-term"><span><span></span></span>déplacements pour effectuer des achats de première nécessité dans des établissements autorisés (liste sur gouvernement.fr) ; </label>
-								</div>
-								<div class="form-group">
-									<input type="checkbox" name="sante" id="sante" class="agree-term" value="sante" />
-									<label for="sante" class="label-agree-term"><span><span></span></span>déplacements pour motif de santé ;</label>
-								</div>
-								<div class="form-group">
-									<input type="checkbox" name="assistance" id="assistance" class="agree-term" value="assistance" />
-									<label for="assistance" class="label-agree-term"><span><span></span></span>déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants ;</label>
-								</div>
-								<div class="form-group">
-									<input type="checkbox" name="proximite" id="proximite" class="agree-term" value="proximite"/>
-									<label for="proximite" class="label-agree-term"><span><span></span></span>déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle des personnes, à l’exclusion de toute pratique sportive collective, et aux besoins des animaux de compagnie.</label>
-								</div>
-								<div class="form-group float-right text-right">
-									Fait à &nbsp;&nbsp;<input type="text" class="classic" size="12" name="place" id="place"/>, le &nbsp;&nbsp;<input type="date" class="classic" name="date" id="date"/>
-									<div class="sign">(signature)</div>
-									<div id="canvas">
-									  <canvas class="roundCorners canvas" id="newSignature" style=""></canvas>
-									</div>
-									<!-- <button type="button" id="sauvegarder_btn" onclick="signatureSave()">Sauvegarder</button> -->
-									<button type="button" id="nettoyer_btn" onclick="signatureClear()" class="btn btn-primary">Nettoyer</button>
-									</br></br>
-									<span id="used-sign">Signature</span>
-									</br>
-									<img id="saveSignature" alt="Saved image png"/>
-								</div>
-							</form>	
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+	
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="main">		
+		<h2 class="form-title" style="text-align:center">CHOISISSEZ VOTRE ATTESTATION</h2>
+		<div class="container">
+			<div class="row">
+				<div class="col-5 container-mini">
+					<div class="signup-content">
+						<div class="signup-image">
+							<a href="format1.html">
+								<h4 class="form-title" style="text-align:center">Format 1.0</h4>
+								<figure><img src="images/format1_attestation_deplacement.png" alt="sing up image"></figure>
+							</a>
 						</div>
 					</div>
 				</div>
-			</section>
-			
-			<div class="fixedbutton">
-				<div class="form-group form-button">
-					<button class="btn btn-primary" id="generate">Générer PDF</button><br/>
-					<button onclick="window.location.reload();" id="reset_btn" class="btn btn-primary" >Remise à zéro</button>
+				<div class="col-5 container-mini">
+					<div class="signup-content">
+						<div class="signup-image">
+							<a href="format2.html">
+								<h4 class="form-title" style="text-align:center">Format 2.0</h4>
+								<figure><img src="images/format2_attestation_deplacement.png" alt="sing up image"></figure>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
-			<p><center>
-				Le code source est disponible sur : <a href="https://github.com/Zenoko/Zenoko.github.io">https://github.com/Zenoko/Zenoko.github.io</a> | <i>v1.5</i><br/>
-				Ce site n'est pas lié à une base de données, aucune donnée n'est collectée.<br/>
-			</p></center>
 		</div>
-		<!-- JS -->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="js/main.js"></script>
-		<script src="dist/html2pdf.bundle.min.js"></script>
-		<script>
-			signatureCapture();
-			document.getElementById("saveSignature").style.display = 'none';
-			document.getElementById("used-sign").style.display = 'none';
-			
-			// RENDERING
-		
-		/*function generatePDF() {
-		  // Choose the element that our invoice is rendered in.
-		  var name = document.getElementById("name").value;
-		  var checkedValue = document.querySelector('.agree-term:checked').value;
-		  var ladate=new Date()
-		  var canvas = document.getElementById("newSignature");
-		  //canvas.removeEventListener('mousedown', ev_mousedown);
-		  canvas.style.cssText = "border: none;";
-		  //document.getElementById("sauvegarder_btn").remove();
-		  document.getElementById("nettoyer_btn").remove();
-
-		  const element = document.getElementById("signup-content");
-		  var opt = {
-			  filename:     'attestation_deplacement_'+checkedValue+'_'+name+"_"+ladate.getFullYear()+"_"+(ladate.getMonth()+1)+"_"+ladate.getDate()+'.pdf',
-			  image:        { type: 'jpeg', quality: 0.98 },
-			  html2canvas:  { scale: 4 }
-			};
-		  // Choose the element and save the PDF for our user.
-		  html2pdf()
-			.set(opt)
-			.from(element)
-			.save();
-		}*/
-		
-		document.getElementById('generate').onclick = function () {
-			// Your html2pdf code here.
-			// Choose the element that our invoice is rendered in.
-			if (document.getElementById('name').value == "" || document.getElementById('birthday').value == "" || document.getElementById('address').value == "" || document.getElementById('place').value == "" || document.getElementById('date').value == "" || document.getElementById('newSignature').value == "")
-			{
-				alert("Un ou plusieurs champ(s) est/sont vide(s) ! ");
-			}else{
-				var name = document.getElementById("name").value;
-				var nbChecked = 0;
-				$('.agree-term:checked').each(function(){
-					nbChecked++;
-				});
-				
-				if (document.querySelector('.agree-term:checked') && nbChecked == 1){
-					var checkedValue = document.querySelector('.agree-term:checked').value;
-					var ladate=new Date()
-					var canvas = document.getElementById("newSignature");
-					//canvas.removeEventListener('mousedown', ev_mousedown);
-					canvas.style.cssText = "border: none;";
-					document.getElementById("name").style.cssText = "border: none;";
-					document.getElementById("birthday").style.cssText = "border: none;";
-					document.getElementById("address").style.cssText = "border: none;";
-					document.getElementById("place").style.cssText = "border: none;";
-					document.getElementById("date").style.cssText = "border: none;";
-					//document.getElementById("sauvegarder_btn").remove();
-					if(document.getElementById("nettoyer_btn")){
-						document.getElementById("nettoyer_btn").remove();
-					}
-					
-					var element = document.getElementById('signup-content');
-					var opt = {
-					  filename:     'attestation_deplacement_'+checkedValue+'_'+name+"_"+ladate.getFullYear()+"_"+(ladate.getMonth()+1)+"_"+ladate.getDate()+'.pdf',
-					  image:        { type: 'jpeg', quality: 0.98 },
-					  html2canvas:  { scale: 4 }
-					};
-					// Choose the element and save the PDF for our user.
-					html2pdf()
-						.set(opt)
-						.from(element)
-						.save();
-				}
-				else {
-					alert("Un motif exclusivement doit être séléctionné ! ");
-				}
-			}
-				
-		};
-		
-		</script>
-	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+    </div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
